@@ -18,11 +18,10 @@ def run(src, dest):
 
 
 if __name__ == "__main__":
-
-  print(src_path, dest)
-  for root, dirs, files in os.walk(src_path):
-    # print(root, dirs, files)
-    src_p = root
-    dest_p = src_p.replace(src, dest)
-    p = multiprocessing.Pool(multiprocessing.cpu_count())
-    p.apply(run, (src_p, dest_p))
+  # print(src_path, dest)
+  with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+    for root, dirs, files in os.walk(src_path):
+      print(root, dirs, files)
+      src_p = root
+      dest_p = src_p.replace(src, dest)
+      pool.apply(run, (src_p, dest_p))
