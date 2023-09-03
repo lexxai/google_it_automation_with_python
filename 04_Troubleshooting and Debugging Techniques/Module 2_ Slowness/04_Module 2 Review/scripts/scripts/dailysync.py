@@ -13,7 +13,7 @@ dest = "data/prod_backup"
 src_path = os.path.join(home_path, src)
 
 def run(src, dest):
-  subprocess.call(["rsync", "-arq", f"{src}/", dest])
+  subprocess.call(["rsync", "-avv", f"{src}/", dest])
   # print(f'subprocess.call(["rsync", "-arq", {src}/, {dest}])')
 
 
